@@ -1,11 +1,6 @@
 #include <stdint.h>
 #include "reg.h"
 
-/**
- * 
- * LED init
- * 
- */
 void led_init(unsigned int led)
 {
 	SET_BIT(RCC_BASE + RCC_AHB1ENR_OFFSET, GPIO_EN_BIT(GPIO_PORTD));
@@ -26,11 +21,20 @@ void led_init(unsigned int led)
 	CLEAR_BIT(GPIO_BASE(GPIO_PORTD) + GPIOx_PUPDR_OFFSET, PUPDRy_0_BIT(led));
 }
 
-/**
- * 
- * blink LED forever
- * 
- */
+
+void button_init(void)
+{
+	SET_BIT(RCC_BASE + RCC_AHB1ENR_OFFSET, GPIO_EN_BIT(GPIO_PORTA));
+
+	//MODER led pin = 00 => Input Floating mode
+	CLEAR_BIT(GPIO_BASE(GPIO_PORTA) + GPIOx_MODER_OFFSET, MODERy_1_BIT(0));
+	CLEAR_BIT(GPIO_BASE(GPIO_PORTA) + GPIOx_MODER_OFFSET, MODERy_0_BIT(0));
+
+	//PUPDR led pin = 00 => No pull-up, pull-down
+	CLEAR_BIT(GPIO_BASE(GPIO_PORTA) + GPIOx_PUPDR_OFFSET, PUPDRy_1_BIT(0));
+	CLEAR_BIT(GPIO_BASE(GPIO_PORTA) + GPIOx_PUPDR_OFFSET, PUPDRy_0_BIT(0));
+}
+
 void blink(unsigned int led)
 {
 	led_init(led);
@@ -53,11 +57,6 @@ void blink(unsigned int led)
 	}
 }
 
-/**
- * 
- * blink LED x count
- * 
- */
 void blink_count(unsigned int led, unsigned int count)
 {
 	led_init(led);
@@ -79,3 +78,16 @@ void blink_count(unsigned int led, unsigned int count)
 			;
 	}
 }
+
+
+ void button_click(unsigned led)
+ {
+	 button_init();
+	 while(1)
+	 {
+		 if(READ_BIT(GPIO_BASE(GPIO_PORTA) + GPIOx_IDR_OFFSET, IDRy_BIT(0)))
+		 {
+			 blink(led);
+		 }
+	 }
+ }
