@@ -5,8 +5,8 @@
 #define LED_ORANGE 13
 #define LED_RED 14
 #define LED_BLUE 15
-
+#define USER_BOTTOM 0
 void blink(unsigned int led);
 void blink_count(unsigned int led, unsigned int count);
-
+void read_bottom(unsigned int bit);
 #endif

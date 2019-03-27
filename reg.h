@@ -9,9 +9,7 @@
 
 #define SET_BIT(addr, bit) (REG(addr) |= UINT32_1 << (bit))
 #define CLEAR_BIT(addr, bit) (REG(addr) &= ~(UINT32_1 << (bit)))
-
-// #define READ_BIT(addr, bit) ??????
-
+#define READ_BIT(addr, bit) (REG(addr) &= UINT32_1 <<(bit))
 //RCC
 #define RCC_BASE 0x40023800
 
@@ -23,6 +21,7 @@
 #define GPIO_PORTB 1
 #define GPIO_PORTC 2
 #define GPIO_PORTD 3
+#define USER_BOTTOM 0
 
 #define GPIO_BASE(port) (0x40020000 + 0x400 * (port))
 
@@ -44,5 +43,8 @@
 #define GPIOx_BSRR_OFFSET 0x18
 #define BRy_BIT(y) ((y) + 16)
 #define BSy_BIT(y) (y)
+
+#define GPIOx_IDR_OFFSET 0x10
+#define IDR_BIT(y) (y)
 
 #endif
