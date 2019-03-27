@@ -8,11 +8,11 @@
 #define USER_BOTTOM 0
 void blink(unsigned int led);
 void blink_count(unsigned int led, unsigned int count);
-<<<<<<< HEAD
+
 void read_bottom(unsigned int bit);
-=======
+
 void button_click(unsigned led);
 
 
->>>>>>> a7dd88752118b7eafeba7d77e1ffc5fe41865a12
+
 #endif

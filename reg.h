@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #ifndef REG_H
 #define REG_H
 
@@ -49,7 +49,6 @@
 #define IDR_BIT(y) (y)
 
 #endif
-=======
 #ifndef REG_H
 #define REG_H
 
@@ -100,4 +99,3 @@
 #define IDRy_BIT(y) (y)
 
 #endif
->>>>>>> a7dd88752118b7eafeba7d77e1ffc5fe41865a12
